@@ -1,4 +1,4 @@
-# Gitlet Design Document
+# Version Control System Design Document
 
 **Name**:
 
