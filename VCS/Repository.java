@@ -1,7 +1,7 @@
-package gitlet;
+package VCS;
 
 import java.io.File;
-import static gitlet.Utils.*;
+import static VCS.Utils.*;
 
 /** Represents a gitlet repository.
  *  does at a high level.

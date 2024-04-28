@@ -1,4 +1,4 @@
-package gitlet;
+package VCS;
 
 import java.io.File;
 
