@@ -14,7 +14,7 @@ Note: if you run `java VCS.main` alone, you will see the error output:
 Please enter a command.
 
 ### init
-1. `java VCS.main init`
+1. `java VCS.main init` (under project folder)
 2. A new folder will be generated under lu_version_control_project (or the project you renamed) folder, named .gitlet. It will contained the first commit file. Any following output files or temporary files will be stored in this folder. 
 3. if you want initialize a new proj with init. You need to manually delete the .gitlet folder. 
 `rm -r .gitlet`
