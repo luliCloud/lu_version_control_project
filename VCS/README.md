@@ -18,3 +18,6 @@ Please enter a command.
 2. A new folder will be generated under lu_version_control_project (or the project you renamed) folder, named .gitlet. It will contained the first commit file. Any following output files or temporary files will be stored in this folder. 
 3. if you want initialize a new proj with init. You need to manually delete the .gitlet folder. 
 `rm -r .gitlet`
+
+### add
+1. `java VCS.main add [file_name]`
