@@ -479,14 +479,16 @@ public class Main implements Serializable {
 
         // Push the file to staging are at first. (Overwrite if exist)
         String content = Utils.readContentsAsString(sourceFile);
-        Utils.writeContents(stageFile, content);
+        // stageFile is same content and format as original file in CWD, but in STAGING_DIR
+        Utils.writeContents(stageFile, content);  
 
         // check whether exist in current commit. If exists, check content using blobID.
         // If equal, remove from stage folder.
-        if (head.getFiles().containsKey(fileName)) {
+        if (head.getFiles().containsKey(fileName)) { // fileName is only name, without absolute path
             // check whether stage folders contains this files
-            String blobID = head.getFiles().get(fileName);
-            List<String> stageFiles = Utils.plainFilenamesIn(Repository.STAGING_DIR);
+            String blobID = head.getFiles().get(fileName);  // obtain blobID using file name from files hashmap
+            List<String> stageFiles = Utils.plainFilenamesIn(Repository.STAGING_DIR); // obtain a list of file name using utils.method
+
             // check whether staging folder contain same file and content is the same
             if (stageFiles.contains(fileName)) {
                 String stageContent = Utils.readContentsAsString(stageFile); // content in stage file
