@@ -15,9 +15,11 @@ Please enter a command.
 
 ### init
 1. `java VCS.main init` (under project folder)
-2. A new folder will be generated under lu_version_control_project (or the project you renamed) folder, named .gitlet. It will contained the first commit file. Any following output files or temporary files will be stored in this folder. 
+2. A new folder will be generated under lu_version_control_project (or the project you renamed) folder, named .gitlet. It will contained the first commit file. Any following output files (blob snapshots, main and headmaster hashmap) or temporary files (staging files) will be stored in this folder. 
 3. if you want initialize a new proj with init. You need to manually delete the .gitlet folder. 
 `rm -r .gitlet`
 
 ### add
-1. `java VCS.main add [file_name]`
+1. `java VCS.main add [file_name_1] [file_name_1] ...`
+2. if you want unstage any staging file (not modified after staging and before you do this action). you can do `java VCS.main add [file_name_1]`
+3. if you already modified the file in `CWD` and running `java VCS.main add [file_name_1]`, you will not unstage the staging file but overwritten the staging file with modified contents. 
