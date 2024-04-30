@@ -35,9 +35,35 @@ Please enter a command.
 
 ### log
 1. `java VCS.main log`
+```
+===
+commit 707717b5ee7195b1f06cfca71db9413f9fe75282
+Date: Mon Apr 29 23:00:47 2024 -0700
+commit a.txt
+
+===
+commit 1310398e61cf6f73945acb35a3e4d16d2e7112a2
+Date: Wed Dec 31 16:00:00 1969 -0800
+initial commit
+```
 
 ### global-log
 1. `java VCS.main global-log`
+```
+===
+commit 707717b5ee7195b1f06cfca71db9413f9fe75282
+Date: Mon Apr 29 23:00:47 2024 -0700
+commit a.txt
+
+===
+commit 1310398e61cf6f73945acb35a3e4d16d2e7112a2
+Date: Wed Dec 31 16:00:00 1969 -0800
+initial commit
+```
 
 ### find
 1. `java VCS.main find "message"`
+```
+17e1142ea3fe84291d1e3bb62bb37a48999b1e9a
+707717b5ee7195b1f06cfca71db9413f9fe75282
+```
