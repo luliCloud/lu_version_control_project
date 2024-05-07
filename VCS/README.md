@@ -14,27 +14,28 @@ Note: if you run `java VCS.main` alone, you will see the error output:
 Please enter a command.
 
 ### init
-1. `java VCS.main init` (under project folder)
+1. `java VCS.Main init` (under project folder)
 2. A new folder will be generated under lu_version_control_project (or the project you renamed) folder, named .gitlet. It will contained the first commit file. Any following output files (blob snapshots, main and headmaster hashmap) or temporary files (staging files) will be stored in this folder. 
 3. if you want initialize a new proj with init. You need to manually delete the .gitlet folder. 
 `rm -r .gitlet`
 
 ### add
-1. `java VCS.main add [file_name_1] [file_name_1] ...`
-2. if you want unstage any staging file (not modified after staging and before you do this action). you can do `java VCS.main add [file_name_1]`
+1. `java VCS.Main add [file_name_1] [file_name_1] ...`
+2. if you want unstage any staging file (not modified after staging and before you do this action). you can do `java VCS.Main add [file_name_1]`
 3. if you already modified the file in `CWD` and running `java VCS.main add [file_name_1]`, you will not unstage the staging file but overwritten the staging file with modified contents. 
 
 ### rm
-1. `java VCS.main rm [file_name_1] [file_name_1] ...`
+1. `java VCS.Main rm [file_name_1] [file_name_1] ...`
 2. rm files from CWD, and retrieve the content from blob snapshots. The matching rules is the blob which has the same name as this file in the last commit `files` hash map. 
 
 ### commit 
-1. `java VCS.main commit "message"`
+1. `java VCS.Main commit "message"`
 2. move all files in addtion staging area to blob directory (convert files to blob snapshots) and track these files (put them in `files` hashmap). 
 3. delete all files in removal staging area and untrack these files (erase them from `files` hashmap).
 
 ### log
-1. `java VCS.main log`
+1. `java VCS.Main log`\
+output
 ```
 ===
 commit 707717b5ee7195b1f06cfca71db9413f9fe75282
@@ -48,7 +49,8 @@ initial commit
 ```
 
 ### global-log
-1. `java VCS.main global-log`
+1. `java VCS.Main global-log`\
+output
 ```
 ===
 commit 707717b5ee7195b1f06cfca71db9413f9fe75282
@@ -62,8 +64,69 @@ initial commit
 ```
 
 ### find
-1. `java VCS.main find "message"`
+1. `java VCS.Main find "message"`\
+output
 ```
 17e1142ea3fe84291d1e3bb62bb37a48999b1e9a
 707717b5ee7195b1f06cfca71db9413f9fe75282
+```
+
+### status
+1. `java VCS.Main status`\
+output
+```
+=== Branches ===
+*main
+
+=== Staged Files ===
+a.txt
+d.txt
+
+=== Removed Files ===
+c.txt
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+```
+
+### restore
+1. `java VCS.Main restore -- [file name]`\
+Takes the version of the file as it exist in the **head commit** and puts it in the working directory, overwrting hte version of the file that's alaready there if there is one. The new version of the file is not staged.\
+2. `java VCS.Main restore [commit id] -- [file name]`\
+Takes the version of the file as it exist in the **commit with the given id** (could be not active branch), and puts it in the working directory, overwriting the version of the file that's laready there if there is one. THe new version of the file is not staged.\ 
+
+### branch
+1. `java VCS.Main branch [branch name]`\
+if input `java VCS.Main status`
+```
+=== Branches ===
+*main
+test
+status
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+```
+
+### remove branch
+1. `java VCS.Main rm-branch [branch name]`
+if input `java VCS.Main rm-branch status` and then `java VCS.Main status`
+```
+=== Branches ===
+*main
+test
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
 ```
