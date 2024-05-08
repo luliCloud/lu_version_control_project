@@ -84,11 +84,11 @@ public class Commit implements Serializable { //
                     System.out.println("There is an untracked file in the way; delete it, "
                             + "or add and commit it first.");
                     System.exit(0);
-                } else if (!otherBranchFiles.get(f).equals(curBranchFiles.get(f))) {
+                } /*else if (!otherBranchFiles.get(f).equals(curBranchFiles.get(f))) {  // bug, curBranchFile.get(f) must be null.
                     System.out.println("There is an untracked file in the way; delete it, "
                             + "or add and commit it first.");
                     System.exit(0);
-                }
+                }*/  // modified in VCS (May 12, 2024)
             }
         }
 
