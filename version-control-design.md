@@ -56,6 +56,17 @@ This function begins by verifying if the specified branch name already exists. I
 21. `commandReset`: Restore all the files tracked by the given commit. REmoves tracked files that are not present in that commit. Also moves the current branch's head to that commit node (no branch conversion). The `commid id` may be abbreviated (6-characters) like for `restore`. The staging area is cleared. If not commit with the given id exists, print "No commit with that id exists". If a working file is untracked in the current branch and would be overwritten by the reset, print "There is an untracked file in the way; delete it, or add and commit it first." and exit. Perform this check before doing anything else. 
 
 22. `helperSwitchReset`: This is the helper function of `switch` and `reset` command. 
+The `switch` function begins by checking if the branchName parameter is not `null`. It retrieves the latest commit associated with the specified branch from the `masterHeadMap`. The function then examines the current working directory (CWD) to identify any files present in the CWD but not in the current branch's most recent commit, yet are in the most recent commit of the target branch to be switched to. If such files are found, they are considered untracked and will be mistakenly overwritten by the `switch` or `reset` command. This is dangerous for any unsaved files. In this case, the function will issue an error message stating, "There is an untracked file in the way; delete it, or add and commit it first," and the operation will be aborted.
+
+If the file exists in both the current and target branch's latest commits, it will be removed from the CWD and later replaced by this function. Once all conflicts with tracked and overlapping files are resolved, all files from the target branch's latest commit are copied to the CWD, and the staging area is cleared. The `HEAD` in `headMasterMap` is then updated to point to the new branch name.
+
+If `resetCommit` arguments is not `null`, which indicates a `reset` command. The `reset` command reverts any branch to an earlier version specified by a commitID. If a short 6-character commit identifier is provided, the function searches for the corresponding full commit ID within the `commit directory`. Once the appropriate commit file is located, its details are loaded into the `branchCommit` object.
+
+The function also initializes a string named `commitPointer`, which holds the most recent commit ID from the currently active branch. Initially, it tries to find the specified commit ID in the current branch. If the commit is found in the current branch, no branch switching is required. If it is not found (`commitPointer`remains empty), the function searches all keys in `headMasterMap` for the commit ID. Here, keys that are not the name of the current working directory, nor "HEAD", nor labeled as "split", are considered potential branches containing the commit.
+
+However, this approach presents a design flaw as there could be multiple branches that fit these criteria, making it unclear which branch should be selected (we chose the first met in the iteration). Therefore, in a future version of this Version Control System (VCS) or in real-world applications like Git, **each commit object should ideally contain information about the branch it belongs to**, facilitating clearer and more accurate branch tracking and commit reversal.
+
+
 ### Commit Class
 
 #### Fields
