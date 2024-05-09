@@ -178,8 +178,7 @@ Below is the working priciple of the `sha1` function:
 3. Computing the Hash Value: The `md.digest()` completes the hash calculation for all input data, returning a byte array representing the hash value.
 4. Formatting the Hash Value: A `Formatter` is used to format the **byte** array into a **hexadecimal string**. Each byte is converted into a two-digit hexadecimal number. 
 5. Exception Handling: if the SHA1 algorithm is unavaible in the system, it catcehs a `NoSuchAlgorighmExcemption` and thrown an `IllegalArgumentException`.
-
-<<<<<<< HEAD
+t
 ### Blob Snapshots and Commit Files
 Blobs, or snapshots, are utilized to store versions of different files. In the commit's hash map (`files`), the file name is stored as a key, and its corresponding path is stored as the value (blob ID, SHA1 hashed). This value can help us find the corresponding blob in `blob` directory. This setup allows for the management of different versions of the same file (identical file names) by using the `commit ID` to determine which version of the file blob should be restored. If a commit ID is not specified, the Version Control System (VCS) automatically tracks and retrieves the most recently committed version from the currently active branch.
 
