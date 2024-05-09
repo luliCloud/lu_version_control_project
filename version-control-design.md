@@ -26,10 +26,11 @@
 
 10. `commandGlobalLog`: This function is designed to display all commits across all branches, unlike the `log` command which is branch-specific. It iterates through a list of all commit filenames, which are obtained using the `Utils.plainFilenamesIn` method. For each commit, it retrieves the commit's details and then uses the `printInfo()` function to display information (`commid ID`, `timestamp`, `commit message` and `parent commit ID` (if it is a merged commit)).
 
-11. `printInfo`: This function serves as a helper for the `log` and `global-log` commands. By default, it displays the `commit ID`, `timestamp`, and `commit message`. However, in cases where the commit includes two parents (indicating a merge commit), it additionally displays the commit IDs of both parents. This extra information is only shown for merge commits. The check conditions is that the commit has two parents (2nd parent != ""). 
+11. `printInfo`: This function serves as a helper for the `log` and `global-log` commands. By default, it displays the `commit ID`, `timestamp`, and `commit message`. However, in cases where the commit includes two parents (indicating a merge commit), it additionally displays the commit IDs of both parents. This extra information is only shown for merge commits.
 
 12. `commandFind`: This function is designed to print out the commit IDs of all commits that contain a specific commit message, which must be passed as an argument enclosed in quotation marks (""). It works by iterating through all files in the `COMMIT_DIR` directory to identify commits whose messages match the provided argument. If a match is found, the commit ID is printed (each takes a seperate line).
 
+<<<<<<< HEAD
 13. `commandStatus`: This function is designed to display what branches currently exist, and marks the current working branch with a `*`. Also displays what files are staged for addition or staged for removal. Noting that we don't realize the last two status `Modifications Not Staged For Commit` and `Untracked Files`. The function first retrieves the active working branch from the `headMasterMap` and indicates it with an asterisk (*). It then identifies and lists other branches that are not currently active. Next, the function checks for files in both the `addition staging directory` and the `removal staging directory`, and displays the names of these files.
 
 14. `commandRestore`: This function is used to revert files back to their previous version. Depending on the arguments, there's 2 different usage of restore: using file name alone or using commid id with file name.\
@@ -81,6 +82,8 @@ ii. Ideally, if the split point's commit ID matches the curCommit's commit ID, t
 iii. **Merge Process**:
 If the commit IDs of the split point and branchHead do not match, and the split point's commit ID does not equal the curCommit's commit ID (indicating neither of heads are the split point), the code checks if branchHead is an ancestor of the current branch by walking back the commit chain (we cannot find a suitable for this scenario yet). This is done by iterating through the parent commits starting from the split point until no parent exists (i.e., reaching the root commit). If branchHead's commit ID is found during this iteration, it indicates that branchHead is indeed an ancestor, and a message "Given branch is an ancestor of the current branch." is printed with the program exiting subsequently. If no ancestor relationship is detected, a new commit is created to represent the merge of the two branches. This new commit contains a message stating that one branch was merged into the other `"Merged " + branchName + " into " + headMap.get("HEAD") + "."`, and it includes references to the split point, curCommit, branchHead, and the branch name being merged. The merged execution is done by `Commit constructor` in `Commit` class. See explanation below:
 
+=======
+>>>>>>> a87353842152f59bb56df7f4e7acf4c915f45a04
 ### Commit Class
 
 #### Fields
@@ -126,6 +129,7 @@ Below is the working priciple of the `sha1` function:
 4. Formatting the Hash Value: A `Formatter` is used to format the **byte** array into a **hexadecimal string**. Each byte is converted into a two-digit hexadecimal number. 
 5. Exception Handling: if the SHA1 algorithm is unavaible in the system, it catcehs a `NoSuchAlgorighmExcemption` and thrown an `IllegalArgumentException`.
 
+<<<<<<< HEAD
 ### Blob Snapshots and Commit Files
 Blobs, or snapshots, are utilized to store versions of different files. In the commit's hash map (`files`), the file name is stored as a key, and its corresponding path is stored as the value (blob ID, SHA1 hashed). This value can help us find the corresponding blob in `blob` directory. This setup allows for the management of different versions of the same file (identical file names) by using the `commit ID` to determine which version of the file blob should be restored. If a commit ID is not specified, the Version Control System (VCS) automatically tracks and retrieves the most recently committed version from the currently active branch.
 
@@ -148,6 +152,8 @@ After exiting the loop (when p1 and p2 intersect), a final check for any common 
 If no split point is found (i.e., no intersection contains valid commit IDs), the method returns null.  
 The method uses breadth-first search strategy by progressively exploring the parents of each commit, thereby tracing back the genealogy of both branches until it finds a common ancestor. This approach handles complex histories, including branches created from merges, ensuring that the correct split point is identified in the case of divergent branch histories.
 
+=======
+>>>>>>> a87353842152f59bb56df7f4e7acf4c915f45a04
 ## Persistence
 This file stores all instance variables of the Repository class with a useful comment above them describing what that variable represents and how that variable is used.
 
