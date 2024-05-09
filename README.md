@@ -150,7 +150,7 @@ output:
 ```
 Merged test into main
 ```
-2. output file (to address potential conflit). Warning: this command will not handed conflict by itself. Instead a conflict files will generated and provided to users. So they can handeled the conflict by themselves. However, this merge commit still considered as a commit and have two parents commits (curBranch and mergedBranch). A further modified to conflict file will be committed by another commit.
+3. The output file (to address potential conflicts) serves as a warning: this command does not resolve conflicts automatically. Instead, a file contents indicating conflicts is generated and overwrites existing conflicting file. The file contents are provided to users so they can manually resolve the conflicts themselves. However, this merge is still recorded as a commit and includes two parent commits (current branch and the merged branch). Any modifications needed to resolve conflicts in the file must be addressed in a subsequent commit.
 Original file contents:
 ```
 main in different version in test. 
