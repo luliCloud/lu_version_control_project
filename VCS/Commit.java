@@ -150,14 +150,14 @@ public class Commit implements Serializable { //
             String curContent = Utils.readContentsAsString(restoreFile);
             toMerge = toMerge + curContent;
         }
-        toMerge += "=======\n";
+        toMerge += "\n=======\n";
         if (givenBranch.containsKey(fileName)) {
             String fileID = givenBranch.get(fileName);
             File restoreFile = Utils.join(Repository.BLOB_DIR, fileID);
             String mergeFile = Utils.readContentsAsString(restoreFile);
             toMerge = toMerge + mergeFile;
         }
-        toMerge = toMerge + ">>>>>>>\n";
+        toMerge = toMerge + "\n>>>>>>>\n";
         Utils.writeContents(Utils.join(Repository.CWD, fileName), toMerge);
         Utils.writeContents(Utils.join(Repository.STAGING_DIR, fileName), toMerge); // Move to addStage
         return toMerge;
