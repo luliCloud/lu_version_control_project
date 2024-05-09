@@ -130,3 +130,33 @@ test
 
 === Untracked Files ===
 ```
+
+### reset
+1. `java VCS.Main reset [commit id]`: reverse branch to a specific commit (specified by the given commid id)
+
+### merge
+1. `java VCS.Main merge [branch name]`: the branch name is the branch to be merged into current branch
+output:  
+1. terminal messeage if successful: 
+```
+Merged test into main
+```
+2. output file (to address potential conflit). Warning: this command will not handed conflict by itself. Instead a conflict files will generated and provided to users. So they can handeled the conflict by themselves. However, this merge commit still considered as a commit and have two parents commits (curBranch and mergedBranch). A further modified to conflict file will be committed by another commit.
+Original file contents:
+```
+main in different version in test. 
+```
+After merge command the terminal output
+```
+Encountered a merge conflict.
+```
+and the same file have conflict changed into:
+
+```
+<<<<<<< HEAD
+main in different version in test. 
+
+=======
+this file modified in main
+>>>>>>>
+```
